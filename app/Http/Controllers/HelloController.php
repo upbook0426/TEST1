@@ -9,6 +9,14 @@ class HelloController extends Controller
 {
     public function index()
      {
-         return view('hello.index',['message'=>'Heelo!']);
+         return view('hello.index',['message'=>'Hello']);
      }
 }
+/*
+$data =
+[
+    ['name'=>'山田', 'mail'=>'taro@yahoo'],
+    ['name'=>'田中', 'mail'=>'tanaka@gmail'],
+];
+    return view('hello.index',['data'=>$data]);
+    */
