@@ -15,7 +15,44 @@
 <table>
 <form action="/hello"  method="post">
  {{ csrf_field() }}
- @if ($errors->has('name'))
+ @if ($errors->has('msg'))
+ <tr><th>ERROR</th><td>{{$errors->first('msg')}}</td></tr>
+ @endif
+ <tr><th>Message: </th><td><input type="text" name="msg"
+    value="{{old('msg')}}"></td></tr>
+ 
+    <tr><th></th><td><input type="submit" value="send"></td></tr>
+    
+</form>
+</table>
+
+@component('components.message')
+ @slot('msg_title')
+ CAUTION!
+ @endslot
+@endcomponent
+
+@endsection
+
+
+@section('footer')
+ copyright 2017 tuyano.
+@endsection
+
+
+{{-- 
+@each('components.item', $data, 'item') 
+
+<p>Controller value<br>'message' = {{$message}}</p> 
+
+<p>ViewComposer value<br>'View_messgage' = {{$View_message}}</p> 
+
+@foreach($data as $item)
+<tr><th>{{$item['name']}}</th><td>{{$item['mail']}}</td></tr>
+@endforeach 
+
+
+@if ($errors->has('name'))
  <tr><th>ERROR</th><td>{{$errors->first('name')}}</td></tr>
  @endif
  <tr><th>name: </th><td><input type="text" name="name"
@@ -36,32 +73,5 @@
  
  <tr><th></th><td><input type="submit"
     value="send"></td></tr>
-</form>
-</table>
-
-@component('components.message')
- @slot('msg_title')
- CAUTION!
- @endslot
-@endcomponent
-
-@endsection
-
-
-@section('footer')
- copyright 2017 tuyano.
-@endsection
-
-
-{{-- @each('components.item', $data, 'item') 
-
-<p>Controller value<br>'message' = {{$message}}</p> 
-
-<p>ViewComposer value<br>'View_messgage' = {{$View_message}}</p> 
-
-@foreach($data as $item)
-<tr><th>{{$item['name']}}</th><td>{{$item['mail']}}</td></tr>
-@endforeach 
-
 
 --}}
