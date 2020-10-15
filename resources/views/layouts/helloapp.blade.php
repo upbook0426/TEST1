@@ -11,6 +11,9 @@ hr {margin:25px 100px; border-top:1px dashed black; }
 .content { margin:10px; }
 .footer { text-align:right; font-size:10pt; margin:10px; 
 border-bottom:solid 1px black; color:black; }
+th {background-color:#999; color:fff; padding:5px 10px;}
+td {border: solid 1px #aaa; color:#999; padding:5px 10px;}
+
 </style>
 </head>
 <body>
