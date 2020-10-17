@@ -12,9 +12,9 @@ class HelloController extends Controller
 {
     public function index(Request $request)
      {
-     $items =  DB::select('select * from people');
-     return view('hello.index',['items' => $items]);
-    
+        $items = DB::table('people')->get();
+        return view('hello.index',['items'=> $items]);
+
     }
 
     public function post(Request $request)
@@ -28,7 +28,67 @@ class HelloController extends Controller
     '['. $msg .']をクッキーに保存しました']));
     $response->cookie('msg',$msg,100);
     return $response;
-        }
+     }
+     public function add(Request $request)
+     {
+         return view ('hello.add');
+     }
+
+     public function create(Request $request)
+     {
+         $param =[
+            'name' => $request->name,
+            'mail' =>$request->mail,
+            'age' => $request->age,
+         ];
+         DB::table('people')->insert($param);
+         return redirect('/hello');
+     }
+
+     public function edit(Request $request)
+     {
+    
+     $item =  DB::table('people')
+        ->where('id',$request->id)->first();
+     return view('hello.edit',['form' => $item]);
+    }
+
+    public function update(Request $request)
+     {
+         $param =[
+            'name' => $request->name,
+            'mail' =>$request->mail,
+            'age' => $request->age,
+         ];
+         DB::table('people')
+         ->where('id',$request->id)
+         ->update($param);
+         return redirect('/hello');
+     }
+
+     public function del(Request $request)
+     {
+        $item =  DB::table('people')
+        ->where('id',$request->id)->first();
+     return view('hello.del',['form' => $item]);
+    }
+
+    public function remove(Request $request)
+     {
+         DB::table('people')
+         ->where('id',$request->id)->delete();
+        return redirect('/hello');
+     }
+
+     public function show(Request $request)
+     {
+        $name = $request->name;
+        $items = DB::table('people')
+        ->where('name','like', '%' .$name .'%')
+        ->where('mail','like','%'. $name . '%')
+        ->get();
+        return view('hello.show',['items'=> $items]);
+     }
 }
 
 /*
@@ -132,3 +192,32 @@ $data =
     }
     return view('hello.index',['msg'=> $msg]);
     */
+
+    /*  //データベース select
+    if (isset($request->id))
+     {
+     $param = ['id' => $request->id];
+     $items =  DB::select('select * from people where id = :id',
+        $param);
+     } else {
+     $items = DB::select('select * from people');
+    }
+     return view('hello.index',['items' => $items]);
+     */
+    /*
+    $id = $request->id;
+    $items = DB::table('people')->where('id','<=', $id)->get();
+    return view('hello.show',['items'=> $items]);
+    */
+    /*
+    DB::insert('insert into people (name,mail,age) values 
+    (:name,:mail,:age)', $param);
+    return redirect('/hello');
+    */
+    /*
+    $param = ['id' => $request->id];
+     $item =  DB::select('select * from people where id = :id',
+        $param);
+     
+     return view('hello.edit',['form' => $item[0]]);
+     */
