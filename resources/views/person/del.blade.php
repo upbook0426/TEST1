@@ -1,54 +1,33 @@
 @extends('layouts.helloapp')
 
-@section('title','Person.add')
+@section('title','Index')
 
 @section('menubar')
  @parent
- 新規作成ページ
+  新規作成ページ
 @endsection
 
 @section('content')
-@if (count($errors)>0)
-<div>
-   <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{$error}}</li>
-      @endforeach
-   </ul>
-</div>
-@endif
 <table>
-<form action="/person/edit" method="post">
-   {{csrf_field()}}
+<form action="/hello/del" method="post">
+   {{ csrf_field()}}
 
-<input type="hidden" name="id" value="{{$form->id}}">
-<tr><th>name: </th><td><input type="text" name="name"
-    value="{{$form->name}}"></td></tr>
+   <input type="hidden" name="id" value="{{$form->id}}">
+   <tr><th>name: </th><td>{{$form->name}}</td></tr>
+   <tr><th>mail: </th><td>{{$form->mail}}</td></tr>
+   <tr><th>age: </th><td>{{$form->age}}</td></tr>
  
-<tr><th>mail: </th><td><input type="text" name="mail"
-    value="{{$form->mail}}" ></td></tr>
-
-<tr><th>age: </th><td><input type="text" name="age"
-   value="{{$form->age}}"  ></td></tr>
- 
-<tr><th></th><td><input type="submit"
-    value="send"></td></tr>
-
-@component('components.message')
- @slot('msg_title')
- CAUTION!
- @endslot
-@endcomponent
-
+   <tr><th></th><td><input type="submit" value="send"></td></tr>
+</form>
+</table>
 @endsection
-
 
 @section('footer')
  copyright 2017 tuyano.
 @endsection
 
 
-{{-- 
+{{--
 @each('components.item', $data, 'item') 
 
 <p>Controller value<br>'message' = {{$message}}</p> 
@@ -100,4 +79,20 @@
     
 </form>
 </table>
+--}}
+
+{{--
+   @foreach ($items as $item)
+<tr>
+    <td>{{$item->name}}</td>
+    <td>{{$item->mail}}</td>
+    <td>{{$item->age}}</td>
+</tr>
+@endforeach
+</table>
+@component('components.message')
+ @slot('msg_title')
+ CAUTION!
+ @endslot
+@endcomponent
 --}}

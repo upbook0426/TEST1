@@ -11,6 +11,12 @@ class Person extends Model
 {
     protected $guarded = array('id');
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new ScopePerson);
+    }
+
     public static $rules = array(
         'name' => 'required',
         'mail' => 'email',
@@ -23,6 +29,8 @@ class Person extends Model
     //use HasFactory;
     return $this->id . ':' . $this->name . ' ('. $this->age .')';
     }
+
+    
     /*
     public function scopeNameEqual($query,$str)
     {
