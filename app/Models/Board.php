@@ -15,7 +15,7 @@ class Board extends Model
         'message' => 'required'
     );
 
-    public function getDate()
+    public function getData()
     {
         return $this->id .':' . $this->title;
         
