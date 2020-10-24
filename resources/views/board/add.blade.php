@@ -1,38 +1,39 @@
 @extends('layouts.helloapp')
 
-@section('title','Person.index')
+@section('title','Board.Add')
 
 @section('menubar')
  @parent
- インデックスページ
+ 投稿ページ
 @endsection
 
 @section('content')
 <table>
-<tr><th>Person</th><th>Board</th></tr>
-@foreach ($hasItems as $item)
-<tr>
-    <td>{{$item->getData()}}</td>
-    <td>
-         <table width="100%">
-         @foreach ($item->boards as $obj)
-            <tr><td>{{$obj->getData()}}</td></tr>
-         @endforeach
-         </table>
-         </td>
-</tr>
-@endforeach
-</table>
-<div style="margin:10px;"></div>
-<table>
-<tr><th>Person</th></tr>
-@foreach ($noItems as $item)
-   <tr>
-      <td>{{$item->getData()}}</td>
-   </tr>
-@endforeach
+<form action="/board/add" method="post">
+   {{csrf_field()}}
+   
+<tr><th>person id: </th><td><input type="number" 
+ name="person_id" ></td></tr>
+ 
+<tr><th>title: </th><td><input type="text" 
+ name="title" ></td></tr>
+
+<tr><th>message: </th><td><input type="text" 
+ name="message" ></td></tr>
+ 
+<tr><th></th><td><input type="submit"
+    value="send"></td></tr>
+</form>
 </table>
 @endsection
+
+@component('components.message')
+ @slot('msg_title')
+ CAUTION!
+ @endslot
+@endcomponent
+
+
 
 
 @section('footer')
