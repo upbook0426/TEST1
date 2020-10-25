@@ -1,5 +1,8 @@
 @extends('layouts.helloapp')
-
+<style>
+   .pagination { font-size:10px;}
+   .paginaiton li { display:inline-block}
+</style>
 @section('title','Index')
 
 @section('menubar')
@@ -18,11 +21,7 @@
 </tr>
 @endforeach
 </table>
-@component('components.message')
- @slot('msg_title')
- CAUTION!
- @endslot
-@endcomponent
+      {{ $items->links() }}
 
 @endsection
 
