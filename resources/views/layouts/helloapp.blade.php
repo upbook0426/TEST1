@@ -1,7 +1,10 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/css/app.css">
 <title>@yield('title')</title>
+
 <style>
+
 body {font-size:16pt; color:black; margin:5px; }
 h1 {font-size:50pt; text-align:right; color:#f6f6f6;
   margin:-20px 0px -30px 0px; letter-spacing:-4pt;}
@@ -13,8 +16,8 @@ hr {margin:25px 100px; border-top:1px dashed black; }
 border-bottom:solid 1px black; color:black; }
 th {background-color:#999; color:fff; padding:5px 10px;}
 td {border: solid 1px #aaa; color:#999; padding:5px 10px;}
-
 </style>
+
 </head>
 <body>
  <h1>@yield('title') </h1>

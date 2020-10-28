@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 
 Route::get('hello','App\Http\Controllers\HelloController@index')
- ->middleware('hello');
+ ->middleware('auth');
 
 Route::post('hello','App\Http\Controllers\HelloController@post');
 
@@ -67,5 +67,11 @@ Route::resource('rest','App\Http\Controllers\RestappController');
 Route::get('hello/session','App\Http\Controllers\HelloController@ses_get');
 Route::post('hello/session','App\Http\Controllers\HelloController@ses_put');
 
+Route::get('hello/auth','App\Http\Controllers\HelloController@getAuth');
+Route::post('hello/auth','App\Http\Controllers\HelloController@postAuth');
+
 
 /*->middleware(HelloMiddleware::class);*/
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

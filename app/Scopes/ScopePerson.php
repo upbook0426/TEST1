@@ -11,6 +11,6 @@ class ScopePerson implements scope
 {
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('age','>',20);
+        $builder->where('age','>',1);
     }
 }
