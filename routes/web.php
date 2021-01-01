@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('hello','App\Http\Controllers\HelloController@index')
+Route::get('/hello','App\Http\Controllers\HelloController@index')
  ->middleware('auth');
 
 Route::post('hello','App\Http\Controllers\HelloController@post');
